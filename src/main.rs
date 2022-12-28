@@ -1,7 +1,29 @@
 use clap::Parser;
 use clap::{arg, command, value_parser, ArgAction, Command};
+use itertools::EitherOrBoth::{Both, Left, Right};
+use itertools::Itertools;
 
 fn simple_palindrome(word: &str) -> bool {
+    let forward = word.chars();
+    let backwards = word.chars().rev();
+
+    for set in forward.zip_longest(backwards) {
+        match set {
+            Both(s, e) => {
+                if s != e {
+                    return false;
+                }
+            }
+            Left(_) => {
+                // even string and we're passed the middle
+                return true;
+            }
+            Right(_) => {
+                // odd string and we're at the middle
+                return true;
+            }
+        }
+    }
     true
 }
 
@@ -36,6 +58,26 @@ mod tests {
     #[test]
     fn test_simple_empty() {
         assert_eq!(simple_palindrome(""), true);
+    }
+
+    #[test]
+    fn test_single_char() {
+        assert_eq!(simple_palindrome("a"), true);
+    }
+
+    #[test]
+    fn test_mutli_char() {
+        assert_eq!(simple_palindrome("aaaaa"), true);
+    }
+
+    #[test]
+    fn test_mutli_char_obvious_false() {
+        assert_eq!(simple_palindrome("abcdef"), false);
+    }
+
+    #[test]
+    fn test_mutli_different_true() {
+        assert_eq!(simple_palindrome("aba"), true);
     }
 
     #[test]
