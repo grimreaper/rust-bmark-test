@@ -1,30 +1,36 @@
+extern crate core;
+
 use clap::Parser;
 use clap::{arg, command, value_parser, ArgAction, Command};
 use itertools::EitherOrBoth::{Both, Left, Right};
 use itertools::Itertools;
 
 fn simple_palindrome(word: &str) -> bool {
-    let forward = word.chars();
-    let backwards = word.chars().rev();
+    let mut chars = word.chars();
 
-    for set in forward.zip_longest(backwards) {
-        match set {
-            Both(s, e) => {
+    loop {
+        let s = chars.next();
+        let e = chars.next_back();
+        match (s, e) {
+            (Some(s), Some(e)) => {
                 if s != e {
                     return false;
                 }
             }
-            Left(_) => {
+            (Some(s), None) => {
                 // even string and we're passed the middle
                 return true;
             }
-            Right(_) => {
+            (None, Some(e)) => {
                 // odd string and we're at the middle
+                return true;
+            }
+            (None, None) => {
+                // an empty string
                 return true;
             }
         }
     }
-    true
 }
 
 fn main() {
