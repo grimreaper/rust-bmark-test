@@ -19,6 +19,9 @@ pretty_assertions = "1"
 criterion = {version = "0.3", features = ["html_reports"]}
 function_name = "0.3.0"
 
+[profile.release]
+debug = 1
+
 [[bench]]
 name = "simple_palindrome_benchmark"
 harness = false
