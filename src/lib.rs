@@ -16,11 +16,11 @@ pub fn simple_palindrome(word: &str) -> bool {
                     return false;
                 }
             }
-            (Some(s), None) => {
+            (Some(_), None) => {
                 // even string and we're passed the middle
                 return true;
             }
-            (None, Some(e)) => {
+            (None, Some(_)) => {
                 // odd string and we're at the middle
                 return true;
             }
