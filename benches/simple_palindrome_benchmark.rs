@@ -44,8 +44,13 @@ pub fn random_not_likely_palindrome_differing_random_strings(c: &mut Criterion) 
         group.throughput(Throughput::Bytes(*size as u64));
         let random_as_string = Alphanumeric.sample_string(&mut rand::thread_rng(), size.to_owned());
         let my_random = random_as_string.as_str();
-        group.bench_with_input(BenchmarkId::from_parameter(size), size, |b, &size| {
-            b.iter(|| my_random);
+        group.bench_with_input(
+            BenchmarkId::new("single iterator", size),
+            size,
+            |b, &size| b.iter(|| bmark::simple_palindrome(my_random)),
+        );
+        group.bench_with_input(BenchmarkId::new("dual iterator", size), size, |b, &size| {
+            b.iter(|| bmark::simple_palindrome(my_random))
         });
     }
     group.finish();
