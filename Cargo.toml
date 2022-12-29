@@ -14,3 +14,8 @@ wild = "2"
 
 [dev-dependencies]
 pretty_assertions = "1"
+criterion = "0.3"
+
+[[bench]]
+name = "simple_palindrome_benchmark"
+harness = false
