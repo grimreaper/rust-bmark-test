@@ -1,15 +1,15 @@
 extern crate core;
 
-use clap::Parser;
 use clap::{arg, command, value_parser, ArgAction, Command};
+use clap::{Arg, Parser};
 use itertools::EitherOrBoth::{Both, Left, Right};
 use itertools::Itertools;
 
-fn double_iterator_palindrome(word: &str) -> bool {
+pub fn double_iterator_palindrome(word: &str) -> bool {
     word.chars().eq(word.chars().rev())
 }
 
-fn simple_palindrome(word: &str) -> bool {
+pub fn simple_palindrome(word: &str) -> bool {
     let mut chars = word.chars();
 
     loop {
@@ -44,20 +44,22 @@ fn main() {
 
     if let Some(word) = matches.get_one::<String>("word") {
         println!("testing for: {}", word);
-        if simple_palindrome(word) {
+        if simple_palindrome(word.as_str()) {
             println!("yes!")
         } else {
             println!("no!")
         }
     }
-
-    println!("Hello, world!");
 }
 
 fn cmd() -> clap::Command {
-    command!().arg(arg!(
-        -w --word "word"
-    ))
+    command!().arg(
+        Arg::new("word")
+            .short('w')
+            .long("word")
+            .action(ArgAction::Set)
+            .value_name("WORD"),
+    )
 }
 
 #[cfg(test)]
