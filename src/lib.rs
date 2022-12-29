@@ -1,4 +1,4 @@
-pub fn double_iterator_palindrome(word: &str) -> bool {
+pub fn dual_iterator_palindrome(word: &str) -> bool {
     word.chars().eq(word.chars().rev())
 }
 
@@ -38,30 +38,30 @@ mod tests {
     #[test]
     fn test_simple_empty() {
         assert_eq!(simple_palindrome(""), true);
-        assert_eq!(double_iterator_palindrome(""), true);
+        assert_eq!(dual_iterator_palindrome(""), true);
     }
 
     #[test]
     fn test_single_char() {
         assert_eq!(simple_palindrome("a"), true);
-        assert_eq!(double_iterator_palindrome("a"), true);
+        assert_eq!(dual_iterator_palindrome("a"), true);
     }
 
     #[test]
     fn test_mutli_char() {
         assert_eq!(simple_palindrome("aaaaa"), true);
-        assert_eq!(double_iterator_palindrome("aaaaa"), true);
+        assert_eq!(dual_iterator_palindrome("aaaaa"), true);
     }
 
     #[test]
     fn test_mutli_char_obvious_false() {
         assert_eq!(simple_palindrome("abcdef"), false);
-        assert_eq!(double_iterator_palindrome("abcdef"), false);
+        assert_eq!(dual_iterator_palindrome("abcdef"), false);
     }
 
     #[test]
     fn test_mutli_different_true() {
         assert_eq!(simple_palindrome("aba"), true);
-        assert_eq!(double_iterator_palindrome("aba"), true);
+        assert_eq!(dual_iterator_palindrome("aba"), true);
     }
 }
