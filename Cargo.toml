@@ -14,7 +14,7 @@ wild = "2"
 
 [dev-dependencies]
 pretty_assertions = "1"
-criterion = "0.3"
+criterion = {"0.3", features = ["html_reports"]}
 
 [[bench]]
 name = "simple_palindrome_benchmark"
