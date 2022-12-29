@@ -55,6 +55,7 @@ criterion_group!(
     benches,
     one_charcter_string,
     random_not_likely_palindrome_very_long_string,
+    random_not_likely_palindrome_differing_random_strings
 );
 // criterion_group!(benches, criterion_dual_one_char_palindrome);
 criterion_main!(benches);
