@@ -1,9 +1,6 @@
 extern crate core;
 
-use clap::{arg, command, value_parser, ArgAction, Command};
-use clap::{Arg, Parser};
-use itertools::EitherOrBoth::{Both, Left, Right};
-use itertools::Itertools;
+use clap::{command, Arg, ArgAction};
 
 fn cmd() -> clap::Command {
     command!().arg(
@@ -33,10 +30,9 @@ fn main() {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use pretty_assertions::assert_eq;
+
     #[test]
     fn verify_cli() {
-        use clap::CommandFactory;
         cmd().debug_assert()
     }
 }

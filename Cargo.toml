@@ -17,6 +17,7 @@ rand = "0.8.5"
 [dev-dependencies]
 pretty_assertions = "1"
 criterion = {version = "0.3", features = ["html_reports"]}
+function_name = "0.3.0"
 
 [[bench]]
 name = "simple_palindrome_benchmark"
