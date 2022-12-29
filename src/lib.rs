@@ -1,9 +1,11 @@
+use unicode_segmentation::UnicodeSegmentation;
+
 pub fn dual_iterator_palindrome(word: &str) -> bool {
-    word.chars().eq(word.chars().rev())
+    word.graphemes(true).eq(word.graphemes(true).rev())
 }
 
 pub fn simple_palindrome(word: &str) -> bool {
-    let mut chars = word.chars();
+    let mut chars = word.graphemes(true);
 
     loop {
         let s = chars.next();

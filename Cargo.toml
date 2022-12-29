@@ -11,6 +11,7 @@ clap = { version = "4.0.32", features = [ "cargo"] }
 itertools = "0.10.5"
 argfile = "0.1.5"
 wild = "2"
+unicode-segmentation = "1.10.0"
 
 [dev-dependencies]
 pretty_assertions = "1"
